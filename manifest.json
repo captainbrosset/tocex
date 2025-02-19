@@ -1,0 +1,33 @@
+{
+  "name": "Table of content sidebar",
+  "description": "A sidebar extension that displays a table of contents for the current page.",
+  "manifest_version": 3,
+  "version": "0.1",
+  "icons": {
+    "256": "icons/256.png"
+  },
+  "background": {
+    "service_worker": "service-worker.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "content-script.js"
+      ]
+    }
+  ],
+  "action": {
+    "default_title": "Click to open the table of content sidebar"
+  },
+  "side_panel": {
+    "default_path": "sidebar.html"
+  },
+  "permissions": [
+    "sidePanel",
+    "tabs",
+    "storage"
+  ]
+}
