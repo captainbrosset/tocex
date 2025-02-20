@@ -1,5 +1,6 @@
 const tocEl = document.getElementById("toc");
-const copyBtn = document.getElementById("copy");
+const copyHeadingsBtn = document.getElementById("copy-headings");
+const copyLinksBtn = document.getElementById("copy-links");
 // const generateBtn = document.getElementById("generate");
 
 let currentTOC = [];
@@ -51,9 +52,17 @@ function onTocChanged(toc) {
 //   });
 // });
 
-copyBtn.addEventListener("click", () => {
+copyHeadingsBtn.addEventListener("click", () => {
   const str = currentTOC.map(heading => {
     return `${"  ".repeat(heading.level - 1)}${"#".repeat(heading.level)} ${heading.title}`;
+  }).join("\n");
+
+  navigator.clipboard.writeText(str);
+});
+
+copyLinksBtn.addEventListener("click", () => {
+  const str = currentTOC.map(heading => {
+    return `${"  ".repeat(heading.level - 1)}* [${heading.title}](#${heading.id})`;
   }).join("\n");
 
   navigator.clipboard.writeText(str);

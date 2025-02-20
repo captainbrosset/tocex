@@ -1,5 +1,5 @@
 {
-  "name": "Table of contents sidebar",
+  "name": "Table of contents",
   "description": "A sidebar extension that displays a table of contents for the current page.",
   "manifest_version": 3,
   "version": "0.1",

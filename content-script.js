@@ -1,4 +1,13 @@
+// The headings to look for.
 const tagNames = ["H1", "H2", "H3", "H4", "H5", "H6"];
+
+// The root element to start looking for headings.
+// This depends on websites. If a website is missing from this list,
+// the default root element is document.body.
+const rootSelectors = {
+  "https://learn.microsoft.com/": ".content",
+  "https://developer.chrome.com/docs/": "main"
+};
 
 chrome.runtime.onMessage.addListener(function (msg, sender, sendResponse) {
   if (msg.action === "generate-toc") {
@@ -8,8 +17,20 @@ chrome.runtime.onMessage.addListener(function (msg, sender, sendResponse) {
   }
 });
 
+function getRootNode() {
+  const location = document.location.href;
+
+  for (const [site, selector] of Object.entries(rootSelectors)) {
+    if (location.startsWith(site)) {
+      return document.querySelector(selector);
+    }
+  }
+
+  return document.body;
+}
+
 function generateTOC(sendResponse) {
-  const data = [...document.querySelectorAll("*")].filter(node => {
+  const data = [...getRootNode().querySelectorAll("*")].filter(node => {
     return tagNames.includes(node.tagName);
   }).map(node => {
     // Add a jump ID to the node at the same time.
