@@ -5,8 +5,14 @@ const tagNames = ["H1", "H2", "H3", "H4", "H5", "H6"];
 // This depends on websites. If a website is missing from this list,
 // the default root element is document.body.
 const rootSelectors = {
-  "https://learn.microsoft.com/": ".content",
-  "https://developer.chrome.com/docs/": "main"
+  "https://learn.microsoft.com/": () => ".content",
+  "https://developer.chrome.com/docs/": () => "main",
+  "https://github.com/": url => {
+    if (url.endsWith(".md") || url.includes(".md#")) {
+      return "article";
+    }
+    return "body";
+  }
 };
 
 chrome.runtime.onMessage.addListener(function (msg, sender, sendResponse) {
@@ -22,7 +28,7 @@ function getRootNode() {
 
   for (const [site, selector] of Object.entries(rootSelectors)) {
     if (location.startsWith(site)) {
-      return document.querySelector(selector);
+      return document.querySelector(selector(location));
     }
   }
 
