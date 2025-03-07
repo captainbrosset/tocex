@@ -36,10 +36,14 @@ function getRootNode() {
 }
 
 function generateTOC(sendResponse) {
-  const data = [...getRootNode().querySelectorAll("*")].filter(node => {
+  const headingElements = [...getRootNode().querySelectorAll("*")].filter(node => {
     return tagNames.includes(node.tagName);
-  }).map(node => {
-    // Add a jump ID to the node at the same time.
+  });
+
+  const ids = headingsToIds(headingElements.map(node => node.textContent.trim()));
+
+  const data = headingElements.map((node, i) => {
+    // Add the anchor ID to the node at the same time, if not already there.
     let id = node.id;
     if (!id) {
       // Try a nested node that has an id.
@@ -48,7 +52,7 @@ function generateTOC(sendResponse) {
         id = idChild.id;
       } else {
         // make one up.
-        id = `tocex-id-${window.crypto.randomUUID()}`;
+        id = ids[i];
         node.id = id;
       }
     }
@@ -65,4 +69,58 @@ function generateTOC(sendResponse) {
 
 function jumpTo(id) {
   document.querySelector(`#${id}`).scrollIntoView();
+}
+
+function headingsToIds(headings) {
+  const ids = [];
+  for (let i = 0; i < headings.length; i++) {
+    const text = headings[i];
+    let id = text.toLowerCase();
+
+    // Remove URLs first, otherwise we'll loose the tagging and won't be able to discern the
+    // url from the text. Keep only the text part.
+    id = id.replace(/\[([^\]]+)\]\([^)]+\)/g, '$1');
+
+    // Only punctuation -, _ and . is kept, all other non letter characters are discarded.
+    id = id.replace(/[^a-zA-Z0-9-_\. ]/g, '');
+
+    // Spaces are replaced by -.
+    id = id.replace(/\s+/g, '-');
+
+    // Consecutive same character -, _ or . are rendered into a single one.
+    id = id.replace(/-+/g, '-');
+    id = id.replace(/_+/g, '_');
+    id = id.replace(/\./g, '.');
+
+    // -.- and -_- are replaced by . and _, respectively.
+    id = id.replace(/-\.-/g, '.');
+    id = id.replace(/-_-/g, '_');
+
+    // Characters -, _ and . at the end of the string are also discarded.
+    id = id.replace(/[-_\.]+$/, '');
+
+    // Remove initial non-letter chars.
+    id = id.replace(/^[^a-z]+/, '');
+
+    // If id is empty, use 'section' instead.
+    if (id === '') {
+      id = 'section';
+    }
+
+    ids.push(id);
+  }
+
+  // Post process to de-duplicate ids.
+  const idCounts = {};
+  for (let i = 0; i < ids.length; i++) {
+    const id = ids[i];
+    if (idCounts[id] === undefined) {
+      idCounts[id] = 0;
+    } else {
+      idCounts[id]++;
+      ids[i] = id + '-' + idCounts[id];
+    }
+  }
+
+  return ids;
 }
