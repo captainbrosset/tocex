@@ -32,10 +32,15 @@ For the following websites, WebToc omits the extra headings at top & bottom of t
 
 **To install and use WebToc:**
 
-1. Clone or download this repo.  Example path:
-   C:\Users\localAccount\GitHub\
+1. Clone or download this repo.
+
+   Example path:
+
+   `C:\Users\localAccount\GitHub\`
+
    The result will then be:
-   C:\Users\localAccount\GitHub\WebToc\
+
+   `C:\Users\localAccount\GitHub\WebToc\`
  
 1. In Microsoft Edge or Chrome, click **Settings and more** or **Customize and control** in the upper right, click **Extensions**, and then click **Manage extensions**.
 
@@ -48,7 +53,8 @@ For the following websites, WebToc omits the extra headings at top & bottom of t
    The "Select the extension directory" dialog opens.
 
 1. Navigate to your clone of the repo, such as:
-   C:\Users\localAccount\GitHub\WebToc\
+
+   `C:\Users\localAccount\GitHub\WebToc\`
 
 1. Click the **Select Folder** button.
 
