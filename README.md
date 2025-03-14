@@ -6,7 +6,7 @@ WebToc is a browser sidebar extension that displays the detailed table of conten
 
 * You can copy as Markdown links and then paste a “Detailed contents” section at the top of an article.  The **Copy as links** button creates a local TOC, in Markdown, to add at the top of a webpage/ article.
 
-![Image](https://github.com/user-attachments/assets/a8bb8a1f-582e-4563-9335-b09999c22c6e)
+![Microsoft Edge, with the WebToc extension in the sidebar, showing the table of content of the currently displayed webpage.](./screenshot.png)
 
 WebToc generates a table of contents from the h1 to h6 tags in the current page, and displays it in the sidebar. It is useful for reviewing the content of long articles and documentation and quickly jumping around within a webpage.
 
