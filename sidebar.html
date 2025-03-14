@@ -4,6 +4,12 @@
 <head>
   <title>Table of contents</title>
   <style>
+    body {
+      margin: 0;
+      font-family: system-ui;
+      font-size: 10pt;
+    }
+
     ul,
     li {
       margin: 0;
@@ -11,31 +17,70 @@
       list-style: none;
     }
 
-    li {
+    .toolbar {
+      background: #eee;
+      border-block-end: 1px solid #ccc;
+      padding: .5rem;
       display: flex;
-      padding: .25rem 0;
-      margin: .125rem 0;
-      font-size: .9rem;
-      border-block-start: 1px solid #ccc;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: .5rem;
     }
 
-    li::before {
-      content: attr(data-indent);
-      white-space: pre;
-      tab-size: 1rem;
+    .toolbar button {
+      font-size: inherit;
+      font-family: inherit;
+      padding: .25rem;
     }
 
-    li span {
-      order: 2;
-      align-self: center;
-      cursor: pointer;
+    .toolbar label {
+      display: flex;
+      align-items: center;
     }
 
-    li span:hover {
-      text-decoration: underline;
+    .toolbar input[type="checkbox"] {
+      align-self: normal;
     }
 
-    li::after {
+    #toc {
+      padding: .5rem;
+
+      li {
+        display: flex;
+        padding: .25rem 0;
+        margin: .125rem 0;
+        font-size: .9rem;
+        border-block-end: 1px solid #ddd;
+      }
+
+      li::before {
+        content: attr(data-indent);
+        white-space: pre;
+        tab-size: 1rem;
+      }
+
+      li span {
+        order: 2;
+        align-self: center;
+        cursor: pointer;
+      }
+
+      li span:hover {
+        text-decoration: underline;
+      }
+
+      li.message {
+        display: block;
+        border: 0;
+      }
+
+      li.message::before,
+      li.message::after {
+        display: none;
+      }
+    }
+
+    #toc.show-levels li::after {
       content: "h" attr(data-level);
       border-radius: .25rem;
       font-weight: bold;
@@ -46,26 +91,18 @@
       padding: .25rem;
       aspect-ratio: 1;
     }
-
-    li.message {
-      display: block;
-      border: 0;
-    }
-
-    li.message::before, li.message::after {
-      display: none;
-    }
-
-    button {
-      margin: 1rem 0;
-    }
   </style>
 </head>
 
 <body>
-  <!-- <button id="generate">Generate table of contents</button> -->
-  <button id="copy-headings">Copy as headings</button>
-  <button id="copy-links">Copy as links</button>
+  <div class="toolbar">
+    <button id="copy-headings">Copy as headings</button>
+    <button id="copy-links">Copy as links</button>
+    <label for="show-levels">
+      <input type="checkbox" id="show-levels">
+      Show levels
+    </label>
+  </div>
   <ul id="toc">
     <li class="message">To load the TOC, reload the page or navigate to another page.</li>
   </ul>

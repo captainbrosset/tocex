@@ -1,7 +1,7 @@
 const tocEl = document.getElementById("toc");
 const copyHeadingsBtn = document.getElementById("copy-headings");
 const copyLinksBtn = document.getElementById("copy-links");
-// const generateBtn = document.getElementById("generate");
+const showLevelsCheckbox = document.getElementById("show-levels");
 
 let currentTOC = [];
 
@@ -46,12 +46,6 @@ function onTocChanged(toc) {
   }
 }
 
-// generateBtn.addEventListener("click", () => {
-//   chrome.storage.session.set({
-//     "tocexRegen": Date.now()
-//   });
-// });
-
 copyHeadingsBtn.addEventListener("click", () => {
   const str = currentTOC.map(heading => {
     return `${"  ".repeat(heading.level - 1)}${"#".repeat(heading.level)} ${heading.title}`;
@@ -66,4 +60,8 @@ copyLinksBtn.addEventListener("click", () => {
   }).join("\n");
 
   navigator.clipboard.writeText(str);
+});
+
+showLevelsCheckbox.addEventListener("change", () => {
+  tocEl.classList.toggle("show-levels", showLevelsCheckbox.checked);
 });

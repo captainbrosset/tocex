@@ -1,10 +1,9 @@
-// The headings to look for.
-const tagNames = ["H1", "H2", "H3", "H4", "H5", "H6"];
-
 // The root element to start looking for headings.
 // This depends on websites. If a website is missing from this list,
 // the default root element is document.body.
-const rootSelectors = {
+// The object key is the start of the website URL.
+// The value is a function that takes the URL and returns the selector.
+const ROOT_SELECTORS = {
   "https://learn.microsoft.com/": () => ".content",
   "https://review.learn.microsoft.com/": () => ".content",
   "https://developer.chrome.com/docs/": () => "main",
@@ -13,7 +12,24 @@ const rootSelectors = {
       return "article";
     }
     return "body";
-  }
+  },
+  "https://www.w3.org/blog": () => "main article",
+};
+
+// The headings to look for by default, unless different selectors
+// are provided in HEADING_SELECTORS.
+const DEFAULT_HEADING_SELECTOR = "h1, h2, h3, h4, h5, h6";
+
+// The headings to find within the root element.
+// This depends on websites. If a website is missing from this list,
+// the default headings are those in DEFAULT_HEADING_SELECTOR.
+// The object key is the start of the website URL.
+// The value is a function that takes the URL and returns the headings selector.
+const HEADING_SELECTORS = {
+  // For these sites, there's only one real h1, the page title, so we only show h2 and below.
+  "https://learn.microsoft.com/": () => "h2, h3, h4, h5, h6",
+  "https://review.learn.microsoft.com/": () => "h2, h3, h4, h5, h6",
+  "https://developer.chrome.com/docs/": () => "h2, h3, h4, h5, h6"
 };
 
 chrome.runtime.onMessage.addListener(function (msg, sender, sendResponse) {
@@ -24,10 +40,11 @@ chrome.runtime.onMessage.addListener(function (msg, sender, sendResponse) {
   }
 });
 
+// Get the root node to start looking for headings.
 function getRootNode() {
   const location = document.location.href;
 
-  for (const [site, selector] of Object.entries(rootSelectors)) {
+  for (const [site, selector] of Object.entries(ROOT_SELECTORS)) {
     if (location.startsWith(site)) {
       return document.querySelector(selector(location));
     }
@@ -36,10 +53,23 @@ function getRootNode() {
   return document.body;
 }
 
+// Get the heading elements to generate the TOC from.
+function getHeadingElements(rootNode) {
+  const location = document.location.href;
+
+  for (const [site, selector] of Object.entries(HEADING_SELECTORS)) {
+    if (location.startsWith(site)) {
+      return [...rootNode.querySelectorAll(selector(location))];
+    }
+  }
+
+  return [...rootNode.querySelectorAll(DEFAULT_HEADING_SELECTOR)];
+}
+
+// Generate the TOC from the heading elements.
 function generateTOC(sendResponse) {
-  const headingElements = [...getRootNode().querySelectorAll("*")].filter(node => {
-    return tagNames.includes(node.tagName);
-  });
+  const rootNode = getRootNode();
+  const headingElements = getHeadingElements(rootNode);
 
   const ids = headingsToIds(headingElements.map(node => node.textContent.trim()));
 
