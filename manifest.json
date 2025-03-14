@@ -4,7 +4,7 @@
   "manifest_version": 3,
   "version": "0.1",
   "icons": {
-    "256": "icons/256.png"
+    "256": "icons/128.png"
   },
   "background": {
     "service_worker": "service-worker.js"
