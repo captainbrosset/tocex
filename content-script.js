@@ -6,6 +6,7 @@ const tagNames = ["H1", "H2", "H3", "H4", "H5", "H6"];
 // the default root element is document.body.
 const rootSelectors = {
   "https://learn.microsoft.com/": () => ".content",
+  "https://review.learn.microsoft.com/": () => ".content",
   "https://developer.chrome.com/docs/": () => "main",
   "https://github.com/": url => {
     if (url.endsWith(".md") || url.includes(".md#")) {
