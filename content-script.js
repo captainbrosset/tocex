@@ -54,43 +54,71 @@ function getRootNode() {
 }
 
 // Get the heading elements to generate the TOC from.
-function getHeadingElements(rootNode) {
+function getHeadings(rootNode) {
   const location = document.location.href;
+  // The default headgins.
+  let headings = [...rootNode.querySelectorAll(DEFAULT_HEADING_SELECTOR)];
 
+  // Override them if there are specific heading selectors for the site.
   for (const [site, selector] of Object.entries(HEADING_SELECTORS)) {
     if (location.startsWith(site)) {
-      return [...rootNode.querySelectorAll(selector(location))];
+      headings = [...rootNode.querySelectorAll(selector(location))];
+      break;
     }
   }
 
-  return [...rootNode.querySelectorAll(DEFAULT_HEADING_SELECTOR)];
+  return headings.map(node => {
+    return {
+      node,
+      text: getHeadingText(node)
+    }
+  })
+}
+
+function getHeadingText(node) {
+  let text = node.textContent.trim();
+
+  // Sometimes headings are images with text.
+  if (!text) {
+    const img = node.querySelector("img");
+    if (img) {
+      text = img.alt;
+    }
+  }
+
+  if (!text) {
+    // Still no text.
+    text = "Untitled";
+  }
+
+  return text;
 }
 
 // Generate the TOC from the heading elements.
 function generateTOC(sendResponse) {
   const rootNode = getRootNode();
-  const headingElements = getHeadingElements(rootNode);
+  const headings = getHeadings(rootNode);
 
-  const ids = headingsToIds(headingElements.map(node => node.textContent.trim()));
+  const ids = headingsToIds(headings.map(heading => heading.text));
 
-  const data = headingElements.map((node, i) => {
+  const data = headings.map((heading, i) => {
     // Add the anchor ID to the node at the same time, if not already there.
-    let id = node.id;
+    let id = heading.node.id;
     if (!id) {
       // Try a nested node that has an id.
-      const idChild = node.querySelector("[id]");
+      const idChild = heading.node.querySelector("[id]");
       if (idChild) {
         id = idChild.id;
       } else {
         // make one up.
         id = ids[i];
-        node.id = id;
+        heading.node.id = id;
       }
     }
 
     return {
-      level: parseInt(node.tagName.substring(1)),
-      title: node.textContent.trim(),
+      level: parseInt(heading.node.tagName.substring(1)),
+      title: heading.text,
       id
     };
   });
