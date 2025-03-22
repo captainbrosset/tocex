@@ -12,7 +12,7 @@ WebToc displays the table of contents (TOC) outline for the current webpage, in 
    * [Pin the WebToc button to the toolbar](#pin-the-webtoc-button-to-the-toolbar)
 * [Use WebToc](#use-webtoc)
    * [Display the table of contents for the current tab](#display-the-table-of-contents-for-the-current-tab)
-   * [Show the heading level number next to each heading](#show-the-heading-level-number-next-to-each-heading)
+      * [Show the heading level number next to each heading](#show-the-heading-level-number-next-to-each-heading)
    * [Compare the TOCs of multiple webpages simultaneously](#compare-the-tocs-of-multiple-webpages-simultaneously)
    * [Copy the TOC as headings](#copy-the-toc-as-headings)
    * [Copy the TOC as links](#copy-the-toc-as-links)
@@ -143,8 +143,8 @@ After WebToc is installed, use the tool as follows.
 1. Click a heading in the table of contents to scroll to the heading in the webpage.
 
 
-<!-- ------------------------------ -->
-### Show the heading level number next to each heading
+<!-- ---------- -->
+#### Show the heading level number next to each heading
 
 * Select the **Show levels** checkbox.
 
