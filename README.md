@@ -244,10 +244,10 @@ You can copy the TOC as Markdown links and then paste a **Contents** section at 
 ## Website-specific behavior
 
 For the following websites, WebToc omits the extra headings at top & bottom of the webpage:
-* https://github.com - GitHub preview of .md files.
-* https://learn.microsoft.com - Microsoft Dev docs.
-   * https://review.learn.microsoft.com - Microsoft Dev docs review.
-* https://developer.chrome.com - Chrome Dev docs.
+
+* [github.com](https://github.com) - GitHub preview of Markdown files.
+* [learn.microsoft.com](https://learn.microsoft.com) - Microsoft Dev docs.<!-- & https://review.learn.microsoft.com -->
+* [developer.chrome.com](https://developer.chrome.com) - Chrome Dev docs.
 
 
 <!-- ====================================================================== -->
