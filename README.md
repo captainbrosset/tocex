@@ -200,9 +200,8 @@ You can copy the TOC as a Markdown headings outline.  The **Copy as headings** b
       #### Manually clear the browser cache
    ## See also
    ```
-<!-- keep as h2/h4/h6, to match other png -->
 
-This example shows h2/h4/h6 headings, showing that WebToc handles arbitrary heading levels.
+   This example shows **h2**, **h4**, and **h6** headings, showing that WebToc handles arbitrary heading levels.
 
 
 <!-- ------------------------------ -->
