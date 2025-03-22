@@ -1,8 +1,15 @@
 # WebToc - A table of contents extractor in your browser
 
-WebToc is a browser sidebar extension that displays the detailed table of contents (TOC) outline for all webpages, in the sidebar as you surf the web.  The TOC reflects all headings in the current page.
+WebToc displays the table of contents (TOC) outline for the current webpage, in the sidebar.  WebToc is a browser sidebar extension that generates a table of contents from the h1 through h6 tags in the current page.
 
-WebToc is useful for page structure analysis and comparing webpages.  You can copy the TOC as Markdown headings, or as a list of Markdown links that you can paste in the `.md` file for a webpage as a **Contents** list.
+Capabilities and features:
+
+* View all headings of the current webpage, as a nested outline.
+* Optionally display the heading level numbers, including arbitrary skipping of levels.
+* Quickly jump around within the webpage.
+* Compare the headings structure of multiple webpages simultaneously.
+* Copy the TOC as Markdown headings.
+* Copy the TOC as a list of Markdown links, and then paste the links into a `.md` source file for a webpage as a **Contents** list.
 
 ![The WebToc extension in the sidebar of Microsoft Edge, showing the table of contents for the current webpage](./images/screenshot.png)
 
@@ -129,9 +136,13 @@ After WebToc is installed, use the tool as follows.
 <!-- ------------------------------ -->
 ### Show the heading level number next to each heading
 
-![The Show levels option showing levels to the left of each heading](./images/show-levels.png)
+* Select the **Show levels** checkbox.
 
-WebToc generates a table of contents from the h1 to h6 tags in the current page, and displays it in the sidebar.  It is useful for reviewing the content of long articles and documentation and quickly jumping around within a webpage.
+  The heading level such as **h2** is displayed to the left of each heading in the TOC:
+
+  ![The Show levels option showing levels to the left of each heading](./images/show-levels.png)
+
+  This example shows **h2**, **h4**, and **h6** headings, showing that WebToc handles arbitrary heading levels.
 
 
 <!-- ------------------------------ -->
@@ -147,19 +158,65 @@ You can open two different browsers (such as Edge Stable, Edge Canary, or Chrome
 
 You can copy the TOC as a Markdown headings outline.  The **Copy as headings** button creates a nested list of headings in Markdown, which you can use for general-purpose doc-design, such as comparing docs and re-outlining.
 
-1. Click the **Copy as headings** button, and then paste into an editor, such as Visual Studio Code.
+1. Click the **Copy as headings** button.<!-- https://learn.microsoft.com/microsoft-edge/devtools-guide-chromium/network/reference -->
+
+   The TOC is copied to the clipboard as a nested list of Markdown headings.
+
+1. Paste into an editor, such as Visual Studio Code.
+
+   For example:
+
+   ```md
+   ## Record network requests
+      #### Stop recording network requests
+      #### Clear requests
+      #### Save requests across page loads
+      #### Capture screenshots during page load
+   ## Change loading behavior
+      #### Emulate a first-time visitor by disabling the browser cache
+            ###### Disable the browser cache from the Network conditions tool
+      #### Manually clear the browser cache
+   ## See also
+   ```
+<!-- keep as h2/h4/h6, to match other png -->
+
+This example shows h2/h4/h6 headings, showing that WebToc handles arbitrary heading levels.
 
 
 <!-- ------------------------------ -->
 ### Copy the TOC as links
 
-You can copy as Markdown links and then paste a “Detailed contents” section at the top of an article.
+You can copy the TOC as Markdown links and then paste a **Contents** section at the top of an article.  This can be called a _webpage TOC_, or _article TOC_.<!-- _local TOC_, _partial TOC_ -->
 
-The **Copy as links** button creates a nested list of anchor links, in Markdown format.
+1. Click the **Copy as links** button.<!-- https://learn.microsoft.com/microsoft-edge/devtools-guide-chromium/network/reference -->
 
-You can add the links to the top of a `.md` file as a **Detailed contents:** list.  This can be called a _webpage TOC_, or _article TOC_.<!-- _local TOC_, _partial TOC_ -->
+   The TOC is copied to the clipboard as a nested list of anchor links, in Markdown format.
 
-1. Click the **Copy as links** button, and then paste into a .md file in an editor, such as Visual Studio Code.
+1. Paste the links into a `.md` file in an editor, such as Visual Studio Code.
+
+   ```md
+   **Contents:**
+   * [Record network requests](#record-network-requests)
+      * [Stop recording network requests](#stop-recording-network-requests)
+      * [Clear requests](#clear-requests)
+      * [Save requests across page loads](#save-requests-across-page-loads)
+      * [Capture screenshots during page load](#capture-screenshots-during-page-load)
+   * [Change loading behavior](#change-loading-behavior)
+      * [Emulate a first-time visitor by disabling the browser cache](#emulate-a-first-time-visitor-by-disabling-the-browser-cache)
+         * [Disable the browser cache from the Network conditions tool](#disable-the-browser-cache-from-the-network-conditions-tool)
+      * [Manually clear the browser cache](#manually-clear-the-browser-cache)
+   * [See also](#see-also)
+   ```
+
+1. Above the list of links, add a lead-in, such as `**Contents:**`.
+
+1. View your`.md` file in a Markdown preview tool, such as a `Readme.md` file in a GitHub repo.
+
+   The body of the webpage shows the rendered list of links.
+
+1. Optionally convert your `.md` file to a `.html` file on a web server, and then view the webpage:
+
+   ![Contents pasted into a webpage](./images/contents-in-webpage.png)<!-- don't use present Readme as an example; too meta -->
 
 
 <!-- ====================================================================== -->
