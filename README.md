@@ -2,18 +2,10 @@
 
 WebToc displays the table of contents (TOC) outline for the current webpage, in the sidebar.  WebToc is a browser sidebar extension that generates a table of contents from the h1 through h6 tags in the current page.
 
-Capabilities and features:
-
-* View all headings of the current webpage, as a nested outline.
-* Optionally display the heading level numbers, including arbitrary skipping of levels.
-* Quickly jump around within the webpage.
-* Compare the headings structure of multiple webpages simultaneously.
-* Copy the TOC as Markdown headings.
-* Copy the TOC as a list of Markdown links, and then paste the links into a `.md` source file for a webpage as a **Contents** list.
-
 ![The WebToc extension in the sidebar of Microsoft Edge, showing the table of contents for the current webpage](./images/screenshot.png)
 
 **Contents:**
+* [Capabilities and features](#capabilities-and-features)
 * [Install WebToc](#install-webtoc)
    * [Clone the WebToc repo to your local drive](#clone-the-webtoc-repo-to-your-local-drive)
    * [Install WebToc from the cloned repo](#install-webtoc-from-the-cloned-repo)
@@ -27,7 +19,19 @@ Capabilities and features:
 * [Website-specific behavior](#website-specific-behavior)
 * [See also](#see-also)
 
-WebToc works in Microsoft Edge and Google Chrome.
+
+<!-- ====================================================================== -->
+## Capabilities and features
+
+WebToc's capabilities and features include:
+
+* View all headings of the current webpage, as a nested outline.
+   * Quickly jump around within the webpage.
+* Optionally display the heading level numbers, including arbitrary skipping of levels.
+* Compare the headings structure of multiple webpages simultaneously.
+   * Works in Microsoft Edge, Google Chrome, and their preview channels.
+* Copy the TOC as Markdown headings.
+* Copy the TOC as a list of Markdown links, to add Contents navigation within a page.
 
 
 <!-- ====================================================================== -->
@@ -207,7 +211,7 @@ You can copy the TOC as a Markdown headings outline.  The **Copy as headings** b
 <!-- ------------------------------ -->
 ### Copy the TOC as links
 
-You can copy the TOC as Markdown links and then paste a **Contents** section at the top of an article.  This can be called a _webpage TOC_, or _article TOC_.<!-- _local TOC_, _partial TOC_ -->
+You can copy the TOC as a list of Markdown links, to add Contents navigation within a page, providing a webpage or article TOC.<!-- _local TOC_, _partial TOC_ -->
 
 1. Click the **Copy as links** button.<!-- https://learn.microsoft.com/microsoft-edge/devtools-guide-chromium/network/reference -->
 
