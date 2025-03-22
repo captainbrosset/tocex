@@ -243,7 +243,7 @@ You can copy the TOC as Markdown links and then paste a **Contents** section at 
 <!-- ====================================================================== -->
 ## Website-specific behavior
 
-For the following websites, WebToc omits the extra headings at top & bottom of the webpage:
+For the following websites, WebToc omits the extra headings at the top and bottom of the webpage:
 
 * [github.com](https://github.com) - GitHub preview of Markdown files.
 * [learn.microsoft.com](https://learn.microsoft.com) - Microsoft Dev docs.<!-- & https://review.learn.microsoft.com -->
@@ -253,6 +253,6 @@ For the following websites, WebToc omits the extra headings at top & bottom of t
 <!-- ====================================================================== -->
 ## See also
 
-* [Everything to know about browser extensions](https://www.microsoft.com/edge/learning-center/everything-to-know-about-browser-extensions?form=MA13I2&msockid=3078d2dac55660f53e4ec6a8c4ec61bf) - introduction for users.
+* [Everything to know about browser extensions](https://www.microsoft.com/edge/learning-center/everything-to-know-about-browser-extensions) - introduction for users.
 * [Add, turn off, or remove extensions in Microsoft Edge](https://support.microsoft.com/microsoft-edge/add-turn-off-or-remove-extensions-in-microsoft-edge-9c0ec68c-2fbc-2f2c-9ff0-bdc76f46b026) - support steps for users.
 * [Sideload an extension to install and test it locally](https://learn.microsoft.com/microsoft-edge/extensions-chromium/getting-started/extension-sideloading)
