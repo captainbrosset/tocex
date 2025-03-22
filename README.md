@@ -21,7 +21,7 @@ Capabilities and features:
 * [Use WebToc](#use-webtoc)
    * [Display the table of contents for the current tab](#display-the-table-of-contents-for-the-current-tab)
    * [Show the heading level number next to each heading](#show-the-heading-level-number-next-to-each-heading)
-   * [Compare the TOCs of two webpages simultaneously](#compare-the-tocs-of-two-webpages-simultaneously)
+   * [Compare the TOCs of multiple webpages simultaneously](#compare-the-tocs-of-multiple-webpages-simultaneously)
    * [Copy the TOC as headings](#copy-the-toc-as-headings)
    * [Copy the TOC as links](#copy-the-toc-as-links)
 * [Website-specific behavior](#website-specific-behavior)
@@ -33,13 +33,19 @@ WebToc works in Microsoft Edge and Google Chrome.
 <!-- ====================================================================== -->
 ## Install WebToc
 
-Clone the WebToc repo, install WebToc from the cloned repo, and then pin WebToc next to the Address bar, as follows.
+To install WebToc:
+
+1. [Clone the WebToc repo to your local drive](#clone-the-webtoc-repo-to-your-local-drive).
+1. [Install WebToc from the cloned repo](#install-webtoc-from-the-cloned-repo).
+1. [Pin the WebToc button to the toolbar](#pin-the-webtoc-button-to-the-toolbar).
+
+Details are below.
 
 
 <!-- ------------------------------ -->
 ### Clone the WebToc repo to your local drive
 
-Clone or download this repo to your local drive, as follows.
+To clone this repo to your local drive:
 
 1. Click the **Code** drop-down button above (https://github.com/captainbrosset/WebToc).
 
@@ -146,11 +152,27 @@ After WebToc is installed, use the tool as follows.
 
 
 <!-- ------------------------------ -->
-### Compare the TOCs of two webpages simultaneously
+### Compare the TOCs of multiple webpages simultaneously
 
-To use WebToc to compare two pages in realtime, open the pages in two different browsers, such as Edge Stable and Edge Canary; see [Become a Microsoft Edge Insider](https://aka.ms/microsoftedge).
+You can open two different browsers side-by-side, and independently **Refresh** each browser to update the WebToc display.
 
-You can open two different browsers (such as Edge Stable, Edge Canary, or Chrome) side-by-side, and independently **Refresh** each browser.
+To use WebToc to compare multiple pages simultaneously:
+
+1. Open multiple different browsers, such as:
+
+   * Microsoft Edge (stable release).
+   * Edge Beta preview channel (updated monthly).
+   * Edge Dev preview channel (updated weekly).
+   * Edge Canary preview channel (updated daily).
+   * Google Chrome (stable, Beta, Dev, or Canary).
+
+1. Install WebToc in each different browser, from the cloned (or downloaded) WebToc repo; see [Install WebToc from the cloned repo](#install-webtoc-from-the-cloned-repo), above.
+
+1. Refresh each browser.
+
+   In the sidebar of each browser, the TOC is independently updated.
+
+To download a preview channel of Microsoft Edge (Beta, Dev, or Canary), see [Become a Microsoft Edge Insider](https://aka.ms/microsoftedge).
 
 
 <!-- ------------------------------ -->
